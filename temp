@@ -1,0 +1,13 @@
+<?php
+    try{
+        include($_SERVER['DOCUMENT_ROOT'] . '/helper/dbconfig.php');
+        $result = $db_conn->prepare('select * from test');
+        $result->execute();
+    }catch (PDOException $err)  {
+        exit($err->getMessage());
+    }
+
+    while ($row = $result->fetch()){
+        echo ($row['row1']. ' '. $row['row2']);
+    }
+?>

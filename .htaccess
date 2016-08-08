@@ -1,0 +1,31 @@
+Options -Indexes
+RewriteEngine On
+RewriteBase /
+
+# Exit the rule chain when showing error pages
+RewriteRule ^error/403.php$ - [L]
+RewriteRule ^error/404.php$ - [L]
+
+# Append '.php' to every request 
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^ %{REQUEST_FILENAME}.php [L]
+
+# Show 404 error page when original request ends with '.php'
+RewriteCond %{THE_REQUEST} \.php
+RewriteRule \.php.*$ - [L,R=404]
+
+# Custom error 
+ErrorDocument 403 /error/403
+ErrorDocument 404 /error/404
+
+# Set additional extension as php file
+#AddType application/x-httpd-php .asp .py .pl
+
+# Set default start page
+#DirectoryIndex index.php
+
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME}\.php -f
+#RewriteRule ^(.+)$ $1.php [L]
+
+
