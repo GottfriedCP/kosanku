@@ -6,25 +6,24 @@
         try{
             include($_SERVER['DOCUMENT_ROOT'] . '/helper/dbconfig.php');
             $result = $db_conn->prepare('
-                insert into kosan 
-                (nama, kebersihan, listrik, keamanan, ukuran, 
+                insert into bobot 
+                (kebersihan, listrik, keamanan, ukuran, 
                     kmr_mandi, ac, jarak_ke_kampus, jarak_ke_warung, harga)
                 values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ');
             $result->execute([
-                $_POST['name'], (int) $_POST['kebersihan'], (int) $_POST['listrik'], 
-                (int) $_POST['keamanan'], (int) $_POST['ukuran'], (int) $_POST['kmr_mandi'], 
-                (int) $_POST['ac'], (int) $_POST['jarak_ke_kampus'], (int) $_POST['jarak_ke_warung'], 
-                (int) $_POST['harga']
+                (float) $_POST['kebersihan'], (float) $_POST['listrik'], 
+                (float) $_POST['keamanan'], (float) $_POST['ukuran'], (float) $_POST['kmr_mandi'], 
+                (float) $_POST['ac'], (float) $_POST['jarak_ke_kampus'], (float) $_POST['jarak_ke_warung'], 
+                (float) $_POST['harga']
             ]);
 
         }catch (PDOException $err)  {
             exit($err->getMessage());
         }
-        $_SESSION['insert_kosan'] = true;
-        $_SESSION['nama_kosan_st'] = $_POST['name'];
+        $_SESSION['insert_bobot'] = true;
         $db_conn = NULL;
-        header('Location: /kosan/crud');
+        header('Location: /admin/bobot');
         //ob_end_flush();
     }
 ?>
