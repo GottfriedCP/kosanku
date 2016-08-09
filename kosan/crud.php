@@ -16,9 +16,9 @@
 
     <div class="container" style="padding-top: 5%;">
         <?php
-            if (isset($_SESSION['insert_success']) && $_SESSION['insert_success']){
+            if (isset($_SESSION['insert_kosan']) && $_SESSION['insert_kosan']){
                 echo("<p style=\"color:green;\">" . "Kosan " . $_SESSION['nama_kosan_st'] . " berhasil ditambahkan" . "</p>");
-                unset($_SESSION['insert_success']);
+                unset($_SESSION['insert_kosan']);
             }
         ?>
 
